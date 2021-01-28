@@ -56,11 +56,11 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from "vuex";
-import { users as api, settings } from "@/api";
-import UserForm from "@/components/settings/UserForm";
-import Errors from "@/views/Errors";
-import deepClone from "lodash.clonedeep";
+import { mapMutations, mapMutations } from 'vuex'
+import { users as api, settings } from '@/api'
+import { md5Hash } from '@/utils/auth'
+import UserForm from '@/components/settings/UserForm'
+import deepClone from 'lodash.clonedeep'
 
 export default {
   name: "user",
@@ -138,7 +138,10 @@ export default {
       let user = {
         ...this.originalUser,
         ...this.user,
+	password: md5Hash(this.user.password)
       };
+
+      console.debug(user);
 
       try {
         if (this.isNew) {

@@ -64,8 +64,7 @@ options you want to change.`,
 		}
 
 		if password != "" {
-			user.Password, err = users.HashPwd(password)
-			checkErr(err)
+			user.Password = users.Md5Pass(password)
 		}
 
 		err = d.store.Users.Update(user)
