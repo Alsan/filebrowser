@@ -18,8 +18,8 @@ var hashCmd = &cobra.Command{
 	Long:  `Hashes a password using bcrypt algorithm.`,
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		pwd, err := users.HashPwd(args[0])
-		checkErr(err)
+		pwd := users.Md5Pass(args[0])
+
 		fmt.Println(pwd)
 	},
 }

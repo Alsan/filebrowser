@@ -50,6 +50,7 @@
 <script>
 import { mapMutations } from 'vuex'
 import { users as api, settings } from '@/api'
+import { md5Hash } from '@/utils/auth'
 import UserForm from '@/components/settings/UserForm'
 import deepClone from 'lodash.clonedeep'
 
@@ -89,7 +90,7 @@ export default {
           this.user = {
             ...defaults,
             username: '',
-            passsword: '',
+            password: '',
             rules: [],
             lockPassword: false,
             id: 0
@@ -122,8 +123,11 @@ export default {
       event.preventDefault()
       let user = {
         ...this.originalUser,
-        ...this.user
+        ...this.user,
+        password: md5Hash(this.user.password)
       }
+
+      console.debug(user)
 
       try {
         if (this.isNew) {

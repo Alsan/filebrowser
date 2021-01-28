@@ -181,7 +181,6 @@ var userPutHandler = withSelfOrAdmin(func(w http.ResponseWriter, r *http.Request
 				return http.StatusForbidden, nil
 			}
 
-			req.Data.Password, err = users.HashPwd(req.Data.Password)
 			if err != nil {
 				return http.StatusInternalServerError, err
 			}
