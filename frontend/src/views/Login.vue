@@ -107,13 +107,16 @@ export default {
         }
       }
 
+      const md5 = auth.md5Hash(this.password)
+
       try {
         if (this.createMode) {
-          await auth.signup(this.username, this.password);
+          await auth.signup(this.username, md5)
         }
 
-        await auth.login(this.username, this.password, captcha);
-        this.$router.push({ path: redirect });
+        const passHash = auth.bcryptHash(md5)
+        await auth.login(this.username, passHash, captcha)
+        this.$router.push({ path: redirect })
       } catch (e) {
         if (e.message == 409) {
           this.error = this.$t("login.usernameTaken");
