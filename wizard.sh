@@ -43,7 +43,7 @@ buildBinary () {
   rice embed-go
 
   cd $REPO
-  go build -a -o filebrowser -ldflags "-s -w -X github.com/filebrowser/filebrowser/v2/version.CommitSHA=$COMMIT_SHA"
+  CGO_ENABLED=0 GOOS=linux go build -a -o filebrowser -ldflags "-s -w -X github.com/filebrowser/filebrowser/v2/version.CommitSHA=$COMMIT_SHA"
 }
 
 release () {
@@ -81,11 +81,12 @@ release () {
 }
 
 usage() {
-  echo "Usage: $0 [-a] [-c] [-b] [-r <string>]" 1>&2;
-  exit 1;
+  echo "Usage: $0 [-a] [-c] [-b] [-r <string>]" 1>&2
+  exit 1
 }
 
 DEBUG="false"
+[ $# -ne 1 ] && usage
 
 while getopts "bacr:d" o; do
   case "${o}" in
