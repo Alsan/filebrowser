@@ -373,6 +373,8 @@ func quickSetup(flags *pflag.FlagSet, d pythonData) {
 }
 
 func initConfig() {
+	log.Println("cfgFile: ", cfgFile)
+
 	if cfgFile == "" {
 		home, err := homedir.Dir()
 		checkErr(err)
@@ -389,6 +391,7 @@ func initConfig() {
 	v.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
 
 	if err := v.ReadInConfig(); err != nil {
+		log.Fatal(err)
 		if _, ok := err.(v.ConfigParseError); ok {
 			panic(err)
 		}
