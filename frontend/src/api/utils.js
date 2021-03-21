@@ -24,7 +24,6 @@ export async function fetchURL(url, opts) {
   if (res.headers.get("X-Renew-Token") === "true") {
     await renew(store.state.jwt);
   }
-
   return res;
 }
 
