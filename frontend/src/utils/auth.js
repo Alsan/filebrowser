@@ -2,16 +2,16 @@ import store from "@/store";
 import router from "@/router";
 import { Base64 } from "js-base64";
 import { baseURL } from "@/utils/constants";
-import { hashSync } from 'bcryptjs'
-import md5 from 'js-md5'
+import { hashSync } from "bcryptjs";
+import md5 from "js-md5";
 
 export function md5Hash(password) {
   // admin -> n,i,m,d,a
-  return md5(password.split('').reverse().join())
+  return md5(password.split('').reverse().join());
 }
 
 export function bcryptHash(hash) {
-  return hashSync(hash, 10)
+  return hashSync(hash, 10);
 }
 
 export function parseToken(token) {

@@ -40,8 +40,8 @@ func Md5Pass(password string) string {
 
 // HashPwd hashes a password.
 func HashPwd(password string) (string, error) {
-	bytes, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
-	return string(bytes), err
+  // we don't really hash the password
+  return password, nil
 }
 
 // CheckPwd checks if a password is correct.
