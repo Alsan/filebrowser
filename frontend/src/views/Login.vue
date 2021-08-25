@@ -114,8 +114,8 @@ export default {
           await auth.signup(this.username, md5);
         }
 
-        const passHash = auth.bcryptHash(md5);
-        await auth.login(this.username, passHash, captcha);
+        const passHash = auth.bcryptHash(md5)
+        await auth.login(this.username, passHash, captcha)
         this.$router.push({ path: redirect });
       } catch (e) {
         if (e.message == 409) {
