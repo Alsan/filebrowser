@@ -24,13 +24,13 @@ buildAssets () {
   cd $REPO/frontend
 
   if [ "$CI" = "true" ]; then
-    npm ci
+    pnpm ci
   else
-    npm install
+    pnpm install
   fi
 
-  npm run lint
-  npm run build
+  pnpm run lint
+  pnpm run build
 }
 
 buildBinary () {
