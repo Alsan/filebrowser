@@ -31,6 +31,10 @@
     "git.ignoreLimitWarning": true,
     "peacock.color": "#1857a4",
     "editor.tabSize": 2,
-    "files.autoSave": "onWindowChange"
+    "files.autoSave": "onWindowChange",
+    "commit-message-editor.view.defaultView": "form",
+    "commit-message-editor.view.fullWidth": true,
+    "commit-message-editor.view.saveAndClose": true,
+    "commit-message-editor.view.visibleViews": "form"
   }
 }
