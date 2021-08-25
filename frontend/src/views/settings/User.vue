@@ -58,7 +58,7 @@
 <script>
 import { mapState, mapMutations } from "vuex";
 import { users as api, settings } from "@/api";
-import { md5Hash } from '@/utils/auth';
+import { md5Hash } from "@/utils/auth";
 import UserForm from "@/components/settings/UserForm";
 import Errors from "@/views/Errors";
 import deepClone from "lodash.clonedeep";

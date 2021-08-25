@@ -70,7 +70,7 @@
 <script>
 import { mapState, mapMutations } from "vuex";
 import { users as api } from "@/api";
-import { md5Hash } from '@/utils/auth'
+import { md5Hash } from "@/utils/auth";
 import Languages from "@/components/settings/Languages";
 
 export default {
@@ -120,6 +120,7 @@ export default {
 
       try {
         const data = { id: this.user.id, password: md5Hash(this.password) };
+        console.debug(data);
         await api.update(data, ["password"]);
         this.updateUser(data);
         this.$showSuccess(this.$t("settings.passwordUpdated"));
