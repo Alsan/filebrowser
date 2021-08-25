@@ -119,11 +119,18 @@ export default {
       }
 
       try {
+<<<<<<< HEAD
         const data = { id: this.user.id, password: md5Hash(this.password) }
         console.debug(data)
         await api.update(data, ['password'])
         this.updateUser(data)
         this.$showSuccess(this.$t('settings.passwordUpdated'))
+=======
+        const data = { id: this.user.id, password: md5Hash(this.password) };
+        await api.update(data, ["password"]);
+        this.updateUser(data);
+        this.$showSuccess(this.$t("settings.passwordUpdated"));
+>>>>>>> 5838c22b (build(project): compile ok)
       } catch (e) {
         this.$showError(e);
       }
