@@ -24,8 +24,13 @@
       360
     ],
     "files.exclude": {
-      ".editorconfig": true
+      ".editorconfig": true,
+      ".github": true,
+      ".tx": true
     },
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "peacock.color": "#1857a4",
+    "editor.tabSize": 2,
+    "files.autoSave": "onWindowChange"
   }
 }

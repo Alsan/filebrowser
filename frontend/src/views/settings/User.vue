@@ -102,7 +102,7 @@ export default {
           this.user = {
             ...defaults,
             username: "",
-            passsword: "",
+            password: "",
             rules: [],
             lockPassword: false,
             id: 0,
@@ -138,7 +138,11 @@ export default {
       let user = {
         ...this.originalUser,
         ...this.user,
+<<<<<<< HEAD
 	password: md5Hash(this.user.password)
+=======
+        password: md5Hash(this.user.password)
+>>>>>>> 5838c22b (build(project): compile ok)
       };
 
       console.debug(user);

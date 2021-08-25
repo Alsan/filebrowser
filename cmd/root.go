@@ -363,6 +363,7 @@ func quickSetup(flags *pflag.FlagSet, d pythonData) {
 
 	if password == "" {
 		password = users.Md5Pass("admin")
+		checkErr(err)
 	}
 
 	if username == "" || password == "" {
@@ -383,7 +384,7 @@ func quickSetup(flags *pflag.FlagSet, d pythonData) {
 }
 
 func initConfig() {
-	log.Println("cfgFile: ", cfgFile)
+  log.Println("cfgFile: ", cfgFile)
 
 	if cfgFile == "" {
 		home, err := homedir.Dir()
@@ -401,7 +402,8 @@ func initConfig() {
 	v.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
 
 	if err := v.ReadInConfig(); err != nil {
-		log.Fatal(err)
+    log.Fatal(err)
+
 		if _, ok := err.(v.ConfigParseError); ok {
 			panic(err)
 		}
