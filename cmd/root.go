@@ -363,7 +363,6 @@ func quickSetup(flags *pflag.FlagSet, d pythonData) {
 
 	if password == "" {
 		password = users.Md5Pass("admin")
-		checkErr(err)
 	}
 
 	if username == "" || password == "" {

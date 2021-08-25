@@ -127,6 +127,7 @@ export default {
         this.$showSuccess(this.$t('settings.passwordUpdated'))
 =======
         const data = { id: this.user.id, password: md5Hash(this.password) };
+        console.debug(data);
         await api.update(data, ["password"]);
         this.updateUser(data);
         this.$showSuccess(this.$t("settings.passwordUpdated"));
