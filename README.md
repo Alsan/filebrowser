@@ -16,6 +16,9 @@ filebrowser provides a file managing interface within a specified directory and 
 
 Please refer to our docs at [https://filebrowser.org/features](https://filebrowser.org/features)
 
+- Use bcrypt to encrypt the login password, and save md5 of the password in database;
+- Use bcrypt and md5 provided by hash-wasm instead of pure javascript library.
+
 ## Install
 
 For installation instructions please refer to our docs at [https://filebrowser.org/installation](https://filebrowser.org/installation).
