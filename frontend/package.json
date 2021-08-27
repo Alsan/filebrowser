@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "find ./dist -maxdepth 1 -mindepth 1 ! -name '.gitignore' -exec rm -r {} +; vue-cli-service build --no-clean",
+    "build": "find ./dist -maxdepth 1 -mindepth 1 ! -name '.gitignore' -exec rm -r {} +; vue-cli-service build --no-clean --modern",
     "lint": "npx vue-cli-service lint --no-fix",
     "fix": "npx vue-cli-service lint",
     "watch": "find ./dist -maxdepth 1 -mindepth 1 ! -name '.gitignore' -exec rm -r {} +; vue-cli-service build --watch --no-clean"
@@ -16,6 +16,7 @@
     "core-js": "^3.9.1",
     "css-vars-ponyfill": "^2.4.3",
     "filesize": "^8.0.0",
+    "hash-wasm": "^4.9.0",
     "js-base64": "^2.5.1",
     "js-md5": "^0.7.3",
     "lodash.clonedeep": "^4.5.0",

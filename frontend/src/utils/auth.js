@@ -2,16 +2,17 @@ import store from "@/store";
 import router from "@/router";
 import { Base64 } from "js-base64";
 import { baseURL } from "@/utils/constants";
-import { hashSync } from "bcryptjs";
-import md5 from "js-md5";
+import { md5, bcrypt } from "hash-wasm";
 
-export function md5Hash(password) {
-  // admin -> n,i,m,d,a
-  return md5(password.split('').reverse().join());
+export async function md5Hash(password) {
+  return await md5(password.split("").reverse().join());
 }
 
-export function bcryptHash(hash) {
-  return hashSync(hash, 10);
+export async function bcryptHash(password) {
+  const salt = new Uint8Array(16);
+  crypto.getRandomValues(salt);
+
+  return bcrypt({ password, salt, costFactor: 11, outputType: "encoded" });
 }
 
 export function parseToken(token) {
@@ -21,7 +22,9 @@ export function parseToken(token) {
     throw new Error("token malformed");
   }
 
-  const data = JSON.parse(Base64.decode(parts[1]));
+  const b64Parts = Base64.decode(parts[1]);
+  console.log(`b64Parts: ${b64Parts}`);
+  const data = JSON.parse(b64Parts);
 
   document.cookie = `auth=${token}; path=/`;
 
@@ -36,7 +39,7 @@ export async function validateLogin() {
       await renew(localStorage.getItem("jwt"));
     }
   } catch (_) {
-    console.warn('Invalid JWT token in storage') // eslint-disable-line
+    console.warn("Invalid JWT token in storage"); // eslint-disable-line
   }
 }
 
@@ -46,9 +49,9 @@ export async function login(username, password, recaptcha) {
   const res = await fetch(`${baseURL}/api/login`, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "application/json"
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify(data)
   });
 
   const body = await res.text();
@@ -64,8 +67,8 @@ export async function renew(jwt) {
   const res = await fetch(`${baseURL}/api/renew`, {
     method: "POST",
     headers: {
-      "X-Auth": jwt,
-    },
+      "X-Auth": jwt
+    }
   });
 
   const body = await res.text();
@@ -83,9 +86,9 @@ export async function signup(username, password) {
   const res = await fetch(`${baseURL}/api/signup`, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "application/json"
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify(data)
   });
 
   if (res.status !== 200) {

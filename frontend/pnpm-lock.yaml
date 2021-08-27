@@ -16,6 +16,7 @@ specifiers:
   eslint-plugin-prettier: ^3.3.1
   eslint-plugin-vue: ^6.2.2
   filesize: ^8.0.0
+  hash-wasm: ^4.9.0
   js-base64: ^2.5.1
   js-md5: ^0.7.3
   lodash.clonedeep: ^4.5.0
@@ -45,6 +46,7 @@ dependencies:
   core-js: 3.9.1
   css-vars-ponyfill: 2.4.3
   filesize: 8.0.0
+  hash-wasm: 4.9.0
   js-base64: 2.6.4
   js-md5: 0.7.3
   lodash.clonedeep: 4.5.0
@@ -4569,6 +4571,10 @@ packages:
   /hash-sum/2.0.0:
     resolution: {integrity: sha512-WdZTbAByD+pHfl/g9QSsBIIwy8IT+EsPiKDs0KNX+zSHhdDLFKdZu0BQHljvO+0QI/BasbMSUa8wYNCZTvhslg==}
     dev: true
+
+  /hash-wasm/4.9.0:
+    resolution: {integrity: sha512-7SW7ejyfnRxuOc7ptQHSf4LDoZaWOivfzqw+5rpcQku0nHfmicPKE51ra9BiRLAmT8+gGLestr1XroUkqdjL6w==}
+    dev: false
 
   /hash.js/1.1.7:
     resolution: {integrity: sha512-taOaskGt4z4SOANNseOviYDvjEJinIkRgmp7LbKP2YTTmVxWBl87s/uzK9r+44BclBSp2X7K1hqeNfz9JbBeXA==}
