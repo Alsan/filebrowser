@@ -68,15 +68,15 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
-import { users as api } from '@/api'
-import { md5Hash } from '@/utils/auth'
-import Languages from '@/components/settings/Languages'
+import { mapState, mapMutations } from "vuex";
+import { users as api } from "@/api";
+import { md5Hash } from "@/utils/auth";
+import Languages from "@/components/settings/Languages";
 
 export default {
   name: "settings",
   components: {
-    Languages,
+    Languages
   },
   data: function () {
     return {
@@ -84,7 +84,7 @@ export default {
       passwordConf: "",
       hideDotfiles: false,
       singleClick: false,
-      locale: "",
+      locale: ""
     };
   },
   computed: {
@@ -101,7 +101,7 @@ export default {
       }
 
       return `${baseClass} input--red`;
-    },
+    }
   },
   created() {
     this.setLoading(false);
@@ -119,19 +119,14 @@ export default {
       }
 
       try {
-<<<<<<< HEAD
-        const data = { id: this.user.id, password: md5Hash(this.password) }
-        console.debug(data)
-        await api.update(data, ['password'])
-        this.updateUser(data)
-        this.$showSuccess(this.$t('settings.passwordUpdated'))
-=======
-        const data = { id: this.user.id, password: md5Hash(this.password) };
+        const data = {
+          id: this.user.id,
+          password: await md5Hash(this.password)
+        };
         console.debug(data);
         await api.update(data, ["password"]);
         this.updateUser(data);
         this.$showSuccess(this.$t("settings.passwordUpdated"));
->>>>>>> 5838c22b (build(project): compile ok)
       } catch (e) {
         this.$showError(e);
       }
@@ -144,7 +139,7 @@ export default {
           id: this.user.id,
           locale: this.locale,
           hideDotfiles: this.hideDotfiles,
-          singleClick: this.singleClick,
+          singleClick: this.singleClick
         };
         await api.update(data, ["locale", "hideDotfiles", "singleClick"]);
         this.updateUser(data);
@@ -152,7 +147,7 @@ export default {
       } catch (e) {
         this.$showError(e);
       }
-    },
-  },
+    }
+  }
 };
 </script>
