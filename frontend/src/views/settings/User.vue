@@ -56,23 +56,24 @@
 </template>
 
 <script>
-import { mapMutations, mapMutations } from 'vuex'
-import { users as api, settings } from '@/api'
-import { md5Hash } from '@/utils/auth'
-import UserForm from '@/components/settings/UserForm'
-import deepClone from 'lodash.clonedeep'
+import { mapState, mapMutations } from "vuex";
+import { users as api, settings } from "@/api";
+import { md5Hash } from "@/utils/auth";
+import UserForm from "@/components/settings/UserForm";
+import Errors from "@/views/Errors";
+import deepClone from "lodash.clonedeep";
 
 export default {
   name: "user",
   components: {
     UserForm,
-    Errors,
+    Errors
   },
   data: () => {
     return {
       error: null,
       originalUser: null,
-      user: {},
+      user: {}
     };
   },
   created() {
@@ -82,14 +83,14 @@ export default {
     isNew() {
       return this.$route.path === "/settings/users/new";
     },
-    ...mapState(["loading"]),
+    ...mapState(["loading"])
   },
   watch: {
     $route: "fetchData",
     "user.perm.admin": function () {
       if (!this.user.perm.admin) return;
       this.user.lockPassword = false;
-    },
+    }
   },
   methods: {
     ...mapMutations(["closeHovers", "showHover", "setUser", "setLoading"]),
@@ -105,7 +106,7 @@ export default {
             password: "",
             rules: [],
             lockPassword: false,
-            id: 0,
+            id: 0
           };
         } else {
           const id = this.$route.params.pathMatch;
@@ -138,11 +139,7 @@ export default {
       let user = {
         ...this.originalUser,
         ...this.user,
-<<<<<<< HEAD
-	password: md5Hash(this.user.password)
-=======
-        password: md5Hash(this.user.password)
->>>>>>> 5838c22b (build(project): compile ok)
+        password: await md5Hash(this.user.password)
       };
 
       console.debug(user);
@@ -164,7 +161,7 @@ export default {
       } catch (e) {
         this.$showError(e);
       }
-    },
-  },
+    }
+  }
 };
 </script>
