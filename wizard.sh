@@ -29,7 +29,7 @@ buildAssets () {
     pnpm install
   fi
 
-  pnpm run lint
+#  pnpm run lint
   pnpm run build
 }
 
