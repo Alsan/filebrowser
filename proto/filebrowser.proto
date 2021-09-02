@@ -1,0 +1,76 @@
+syntax = "proto3";
+
+option go_package = "github.com/alsan/filebrowser/serverproto";
+
+package proto;
+
+service FileBrowserService {
+  rpc Login(LoginRequest) returns (LoginResponse) {}
+  rpc ListFiles(ListFilesRequest) returns (ListFilesResponse) {}
+  rpc UploadFile(UploadFileRequest) returns (UploadFileResponse) {}
+  rpc DownloadFile(DownloadFileRequest) returns (DownloadFileResponse) {}
+}
+
+enum ResponseStatus {
+  Unknown = 0;
+  Ok = 1;
+  Failed = 2;
+}
+
+message StringList { repeated string item = 1; }
+
+message LoginRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  ResponseStatus status = 1;
+
+  oneof data {
+    string message = 2;
+    string token = 3;
+  }
+}
+
+message ListFilesRequest {
+  string token = 1;
+  string path = 2;
+  optional string filter = 3;
+}
+
+message ListFilesResponse {
+  ResponseStatus status = 1;
+
+  oneof data {
+    string message = 2;
+    StringList list = 3;
+  }
+}
+
+message UploadFileRequest {
+  string token = 1;
+  string path = 2;
+  string filename = 3;
+  bytes chunk = 4;
+}
+
+message UploadFileResponse {
+  ResponseStatus status = 1;
+
+  optional string message = 2;
+}
+
+message DownloadFileRequest {
+  string token = 1;
+  string path = 2;
+}
+
+message DownloadFileResponse {
+  ResponseStatus Status = 1;
+
+  oneof data {
+    string message = 2;
+    bytes chunk = 3;
+  }
+}
