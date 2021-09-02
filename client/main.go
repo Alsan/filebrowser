@@ -37,12 +37,12 @@ func Login(address string, username string, password string) (*pb.LoginResponse,
 	ctx := createRequestContext()
 
 	return client.Login(ctx, &pb.LoginRequest{
-		Name:     username,
+		Username: username,
 		Password: password,
 	})
 }
 
-func ListFiles(address string, token string, path string) (*pb.ListDirResponse, error) {
+func ListFiles(address string, token string, path string) (*pb.ListFilesResponse, error) {
 	// TODO: implementation
 	return nil, nil
 }
