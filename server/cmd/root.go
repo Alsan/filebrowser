@@ -25,6 +25,7 @@ import (
 
 	"google.golang.org/grpc"
 
+	client "github.com/alsan/filebrowser/client"
 	pb "github.com/alsan/filebrowser/proto"
 	"github.com/alsan/filebrowser/server/auth"
 	"github.com/alsan/filebrowser/server/diskcache"
@@ -173,7 +174,7 @@ func createListenerFromSettings(cmd *cobra.Command, server *settings.Server, add
 
 func grpcServer(listener net.Listener) {
 	s := grpc.NewServer()
-	pb.RegisterFileBrowserServiceServer(s, &pb.Server{})
+	pb.RegisterFileBrowserServiceServer(s, &client.Server{})
 	if err := s.Serve(listener); err != nil {
 		log.Fatalf("Unable to start grpc server: %v", err)
 	}
