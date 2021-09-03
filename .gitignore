@@ -30,3 +30,6 @@ yarn-error.log*
 bin/
 build/
 frontend/dist
+
+.filebrowser.yml
+.pnpm-debug.log
